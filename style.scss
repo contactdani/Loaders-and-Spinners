@@ -11,14 +11,18 @@ body{
     padding-bottom: 100px;
     box-shadow: 0px 40px 60px -20px rgba(0,0,0,0.2);
 }
-h1,article{
+h1{
     padding: 50px;
     text-align: center;
     font-family: monospace;
     text-transform: uppercase;
-    color: orangered;
+    color: white;;
+    width: 250;
+    background: #444;
+    margin-bottom: 40px;
 }
 
+/*-----------Spinners-----------*/
 .spinners{
     width: 100px;
     height: 100px;
@@ -53,14 +57,14 @@ h1,article{
 /*---Spinner 02---*/
 .spinner-02:after{
     background: orangered;
-    width: 2px;
-    height: 55px;
+    width: 3px;
+    height: 50px;
     border-radius: 0px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -3px;
-    animation: spin1 1000ms linear infinite;
+    margin-left: -1.5px;
+    animation: spin2 1000ms linear infinite;
     transform-origin: top center;    
 }
 
@@ -76,7 +80,7 @@ h1,article{
     left: 50%;
     transform: rotate(90deg);
     margin-left: -3px;
-    animation: spin1 1000ms linear 300ms infinite;
+    animation: spin2 1000ms linear 300ms infinite;
     transform-origin: top center;
 
 
@@ -91,7 +95,7 @@ h1,article{
     top: 50%;
     left: 50%;
     margin-left: -3px;
-    animation: spin1 1000ms linear infinite;
+    animation: spin2 1000ms linear infinite;
     transform-origin: top center;    
 }
 /*Spinner 04*/
@@ -109,16 +113,77 @@ h1,article{
         position: absolute;
         top: 0%;
         left: 0%;
-        animation: pulse 1000ms linear 300ms infinite;
+        animation: pulse 1000ms linear 2000ms infinite;
     }
 }
 
+/*Spinner 05*/
+.spinner-05{
+    &:after,&:before{
+        background: #00dbca;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -50px;
+        margin-top: -50px;
+        opacity: 0;
+        animation: pulse 3000ms linear infinite;
+    }
+
+    &:after{
+        animation: pulse 2000ms linear 2300ms infinite;
+    }
+}
+
+/*Spinner 05*/
+.spinner-06{
+    width: 0px;
+    height: 0px;
+    
+    span{
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: #ccc;
+        border-radius: 50%;
+        position: absolute;
+        top: 0px;
+        
+        &:nth-child(1){
+            left: -40px;
+            background: orange;
+            animation: bounce 1s ease-in-out infinite;
+        }
+        
+        &:nth-child(2){
+            left: 0px;
+            background: darkcyan;
+            animation: bounce 1s ease-in-out 0.33s infinite;
+        }
+        
+        &:nth-child(3){
+            left: 40px;
+            background: orangered;
+            animation: bounce 1s ease-in-out 0.66s infinite;
+        }
+    }
+}
+
+
 /* Animation for spinners*/
+
+
 @keyframes spin1{
     0%{transform: rotate(0deg) scale(1.2)}
     50%{transform: rotate(90deg)scale(1)}
     100%{transform: rotate(360deg)scale(1.2)}
 }
+
+@keyframes spin2{
+    0%{transform: rotate(0deg) }
+    100%{transform: rotate(360deg)}
+}
+
 
 @keyframes pulse{
     0%{ transform: scale(0);
@@ -130,4 +195,77 @@ h1,article{
     }
 }
 
+@keyframes bounce{
+    0%,75%,100%{
+        transform: translateY(0px)
+    }
+    
+    25%{
+        transform: translateY(-30px)
+    }
+}
+
+/*-----------Loaders-----------*/
+.loader{
+    width: 300px;
+    height: 0px;
+    border-top: 8px dotted #ccc;
+    background: none;
+    display: inline-block;
+    position: relative;
+    
+    &:before,&:after{
+        content: "";
+        display: block;
+        height: 0px;
+        width: 0px;
+        border: 30px solid orangered;
+        border-radius: 50%;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        position: absolute;
+        top: 50%;
+        margin-top: -34px;
+        animation: topChamp 1s ease-in-out infinite
+                  ,moveChamp 3s linear infinite;
+      
+    }
+    
+    &:after{
+        border-color: orangered;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        animation: bottomChamp 1s ease-in-out infinite
+                   ,moveChamp 3s linear infinite;
+    }
+    
+}
+
+@keyframes topChamp{
+    0%,100%{transform: rotate(40deg)}
+    
+    50%{transform: rotate(-50deg);}
+}
+
+@keyframes bottomChamp{
+    0%,100%{transform: rotate(-40deg);}
+
+    50%{transform: rotate(37deg);}
+}
+
+@keyframes moveChamp{
+    0%,100%{
+       left: 0%;
+    }
+    
+    50%{
+        left: 100%;
+    }
+    0%,49%{
+        transform: rotateY(0deg);
+    }
+    50%,100%{
+        transform: rotateY(180deg);
+    }
+}
 
